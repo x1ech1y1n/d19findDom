@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>从Window对象中获取有用的信息</title>
+    <style>
+            body {
+              margin: 0;
+            }
+            div {
+              box-sizing: border-box;
+              width: 100px;
+              height: 100px;
+              background-image: url(img/bgtile.png);
+              border: 10px solid white;
+            }
+          </style>
+</head>
+<body>
+        <div>
+
+        </div>
+        
+        <script>
+            var div = document.querySelector('div'); // 获取第一个div
+            var WIDTH = window.innerWidth;  // 整个浏览器窗体宽度
+            var HEIGHT = window.innerHeight;    // 整个浏览器窗体高度
+            
+            div.style.width = WIDTH + 'px'; // div盒子里的宽=浏览器宽
+            div.style.height = HEIGHT + 'px'; // div盒子里的高=浏览器高
+            //  console.log(div.HEIGHT);
+            // 调整窗口大小时按F5刷新, 它就会变成刷新时的大小,不会复原
+            // onresize可以解决此问题
+            window.onresize = function() {
+                WIDTH = window.innerWidth;
+                HEIGHT = window.innerHeight;
+                div.style.width = WIDTH + 'px';
+                div.style.height = HEIGHT + 'px';
+            }
+        </script>
+</body>
+</html>

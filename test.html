@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom节点使用</title>
+</head>
+<style>
+        .highlight {        /*不再js中更改样式,就不会成为内联样式*/
+          color: white;
+          background-color: black;
+          padding: 10px;
+          width: 250px;
+          text-align: center;
+        }
+</style>
+<body>
+    <section>
+        <img src="img/dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+        <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+    </section>
+    <script>
+        var link = document.querySelector('a'); // 获取文档中第一个a元素, quertselector("#demo")获取id为demo的元素,
+        //querySelector(".example"),获取文档中 class="example" 的第一个元素:
+        //querySelector("a[color]"),获取文档中带有color属性的第一个a元素
+        // querySelectorAll("p");选择文档中所有p元素
+
+        link.textContent = 'Mozilla Developer Network'; // 修改a标签内的文本
+        link.href = 'https://developer.mozilla.org';  // 修改a标签内的超链接
+        var sect = document.querySelector('section'); // 获取section元素
+
+        var para = document.createElement('p');     // 创建新元素p
+        para.textContent = 'We hope you enjoyed the ride.'; // p元素添加文本
+        sect.appendChild(para);  // 在section后面家人子节点para
+        var text = document.createTextNode(' — the premier source for web development knowledge.');
+        var linkPara = document.querySelector('p');
+        linkPara.appendChild(text); // 将text这个变量移动到linkpara即元素p的子后代
+        sect.appendChild(linkPara); // linkpara移动到section下方
+
+        // sect.removeChild(linkPara); // 移除子节点linkpara
+        linkPara.parentNode.removeChild(linkPara);
+
+        // CSS样式, 成为内联样式 即在style里能直接看到
+        // para.style.color = 'white';
+        // para.style.backgroundColor = 'black';
+        // para.style.padding = '10px';
+        // para.style.width = '250px';
+        // para.style.textAlign = 'center';
+        para.setAttribute('class', 'highlight');
+    </script>
+</body>
+</html>

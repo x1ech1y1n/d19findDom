@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>购物车</title>
+</head>
+<style>
+    li {
+        margin-bottom: 10px;
+    }
+    li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+    }
+</style>
+<body>
+        <h1>My shopping list</h1>
+
+        <div>
+          <label for="item">Enter a new item:</label>
+          <input type="text" name="item" id="item">
+          <button id="addbtn">Add item</button>
+
+        </div>
+    
+        <ul>
+            
+        </ul>
+    
+        <script>
+            var listul = document.querySelector("ul");
+            var listinput = document.querySelector("input");
+            var listbutton = document.querySelector("button");
+            document.getElementById("addbtn").onclick = function(){
+                var getValue = listinput.value;
+                // console.log(getValue);
+                listinput.value = ''; // click后文本框为空
+
+                // 创建三个元素
+                var newLi = document.createElement('li');
+                var newSpan = document.createElement('span'); 
+                var newButton = document.createElement('button');
+
+                // 先创建一个元素,再创建一个文本节点,将文本节点添加到li元素上,再将li添加到ul上!
+                // 创建文本节点,数值为input输入内容
+                var liText = document.createTextNode(getValue); 
+                // 将文本节点附加到li上  
+                newLi.appendChild(liText);
+                // 最后将li附加到ul上
+                listul.appendChild(newLi);
+                
+                newSpan.appendChild(liText);
+                newLi.appendChild(newSpan); // 将newSpan设为newLi的子节点
+
+                var btnText = document.createTextNode("Delete");  // 文本节点
+                newButton.appendChild(btnText);
+                newLi.appendChild(newButton);    // 将newButton设为newLi的子节点  
+
+                newButton.onclick = function(){
+                    listul.removeChild(newLi);   // 移除listul的子节点newLi
+                }       
+                listinput.focus();  // 聚焦input
+            }
+            
+        </script>
+</body>
+</html>
